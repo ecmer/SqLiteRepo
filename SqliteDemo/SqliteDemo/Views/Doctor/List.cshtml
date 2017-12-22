@@ -1,0 +1,14 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@using SqliteDemo.Models.Entity;
+
+@model Doctor[]
+<h4>Doctor List</h4>
+<ul>
+    @foreach (Doctor doc in Model)
+    {
+        <li>@doc.doctorID,  @doc.doctorName, @doc.doctorEmail, @doc.doctorPhone,
+        @doc.salt, @doc.hashedPassword, @doc.doctorSex, @doc.IsAdmin, @doc.status</li>
+    }
+</ul>

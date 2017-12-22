@@ -157,17 +157,17 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="Controllers\BookController.cs" />
+    <Compile Include="Controllers\DoctorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\Entity\Book.cs" />
-    <Compile Include="Models\Repository\BookPersistence.cs" />
+    <Compile Include="Models\Entity\Doctor.cs" />
+    <Compile Include="Models\Repository\DoctorPersistence.cs" />
     <Compile Include="Models\Repository\IRepository.cs" />
     <Compile Include="Models\Repository\RepositoryManager.cs" />
     <Compile Include="Models\Repository\SqliteRepository.cs" />
-    <Compile Include="Models\Transaction\BookManager.cs" />
+    <Compile Include="Models\Transaction\DoctorManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -217,10 +217,10 @@
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Book\List.cshtml" />
-    <Content Include="Views\Book\AddBook.cshtml" />
-    <Content Include="Views\Book\DeleteBook.cshtml" />
-    <Content Include="Views\Book\ChangeBook.cshtml" />
+    <Content Include="Views\Doctor\List.cshtml" />
+    <Content Include="Views\Doctor\AddDoctor.cshtml" />
+    <Content Include="Views\Doctor\DeleteDoctor.cshtml" />
+    <Content Include="Views\Doctor\ChangeDoctor.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

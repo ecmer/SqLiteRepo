@@ -11,7 +11,7 @@ namespace SqliteTest.Models.Repository
     public class SqliteRepository : IRepository
     {
         // Location of the database file 
-        private string databaseFile = "C:\\Users\\cemalettin-erdolu\\MyDatabase.sqlite";
+        private string databaseFile = "C:\\Users\\denizmerve\\Database.sqlite";
 
         private SQLiteConnection dbConnection;
 
@@ -120,15 +120,16 @@ namespace SqliteTest.Models.Repository
             bool openResult = Open();
             if (success & openResult)
             {
-                string sql = "CREATE TABLE book (title VARCHAR(50), isbn DECIMAL, dateadded DATE, PRIMARY KEY(isbn))";
+                string sql = "CREATE TABLE doctor (doctorID VARCHAR(50), doctorName VARCHAR(50), doctorEmail VARCHAR(50)," +
+                    "doctorPhone VARCHAR(50), salt VARCHAR(50), hashedPassword VARCHAR(50)," +
+                    "doctorSex INTEGER, IsAdmin INTEGER, status INTEGER, PRIMARY KEY(doctorID))";
                 DoCommand(sql);
-
-                sql = "insert into book (title, isbn, dateadded) values "
-                    + "('Gone With The Wind', 67890123, '2011-01-03')"
-                    + ", ('Platos Republic', 80192837, '2013-02-25')"
-                    + ", ('Selcuk Altun', 22334455778, '1944-06-15')"
-                    + ", ('Die Blechtrommel', 90897856453, '1896-07-06')";
-                DoCommand(sql);
+                /*
+                sql = "insert into doctor(doctorID, doctorName, doctorEmail, doctorPhone," +
+                    "salt, hashedPassword, doctorSex, IsAdmin, status) values "
+                    + "('1234567', 'Deniz Merve Gunduz', 'dmerve.gunduz@gmail.com', '0123456789'," +
+                    "'blablabla', '23456789sfdgh', 1, 0, 1)";
+                DoCommand(sql);*/
             }
 
             return success;

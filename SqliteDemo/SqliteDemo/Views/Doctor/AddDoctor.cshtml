@@ -1,0 +1,22 @@
+﻿@{
+    ViewBag.Title = "AddDoctor";
+}
+@using SqliteDemo.Models.Entity;
+@model Doctor
+
+<h2>AddDoctor</h2>
+
+<form method="post" action="~/Doctor/AddDoctor">
+
+    <p><label>Doctor ID: <input type="text" name="doctorID" value="@Model.doctorID"/></label></p>
+    <p><label>Doctor Name: <input type="text" name="doctorName" value="@Model.doctorName" /></label></p>
+    <p><label>Doctor Email: <input type="text" name="doctorEmail" value="@Model.doctorEmail" /></label></p>
+    <p><label>Doctor Phone: <input type="text" name="doctorPhone" value="@Model.doctorPhone" /></label></p>
+    <p><label>Doctor salt: <input type="text" name="salt" value="@Model.salt" /></label></p>
+    <p><label>Doctor Hashed Password: <input type="text" name="hashedPassword" value="@Model.hashedPassword" /></label></p>
+    <p><label>Doctor Sex: <input type="text" name="doctorSex" value="@Model.doctorSex" /></label></p>
+    <p><label>Doctor IsAdmin: <input type="text" name="IsAdmin" value="@Model.IsAdmin" /></label></p>
+    <p><label>Doctor status: <input type="text" name="status" value="@Model.status" /></label></p>
+    <p><input type="submit" value="Add Doctor" /></p>
+
+</form>

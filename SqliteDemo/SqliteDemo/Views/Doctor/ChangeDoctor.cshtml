@@ -1,0 +1,15 @@
+﻿@{
+    ViewBag.Title = "ChangeDoctor";
+}
+@using SqliteDemo.Models.Entity;
+@model Doctor
+
+<h2>ChangeDoctor</h2>
+
+<form method="post" action="~/Doctor/ChangeDoctor">
+
+    <p><label>Doctor ID: <input type="text" name="doctorID" value="@Model.doctorID" /></label></p>
+    <p><label>Doctor Name: <input type="text" name="doctorName" value="@Model.doctorName" /></label></p>
+    <p><input type="submit" value="Change Doctor" /></p>
+
+</form>
