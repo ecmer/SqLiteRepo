@@ -17,7 +17,7 @@ namespace SqliteDemo.Models.Repository
          */
         public static Doctor getDoctor(Doctor keyDoctor)
         {
-            string sqlQuery = "select * from doctor where doctorID=" + keyDoctor.doctorID;
+            string sqlQuery = "select * from doctor where DoctorID=" + keyDoctor.DoctorID;
             List<object[]> rows = RepositoryManager.Repository.DoQuery(sqlQuery);
             //System.Console.WriteLine("$$rows: " + rows.Count);
             if (rows.Count == 0)
@@ -27,10 +27,10 @@ namespace SqliteDemo.Models.Repository
 
             // Use the data from the first returned row (should be the only one) to create a Doctor.
             object[] dataRow = rows[0];
-            Doctor doctor = new Doctor { doctorID = (string)dataRow[0], doctorName = (string)dataRow[1],
-                doctorEmail = (string)dataRow[2], doctorPhone = (string)dataRow[3], salt = (string)dataRow[4],
-                hashedPassword = (string)dataRow[5], doctorSex = (int)dataRow[6], IsAdmin = (int)dataRow[7],
-                status = (int)dataRow[8]};
+            Doctor doctor = new Doctor { DoctorID = (string)dataRow[0], DoctorName = (string)dataRow[1],
+                DoctorEmail = (string)dataRow[2], Salt = (string)dataRow[3],
+                HashedPassword = (string)dataRow[4], DoctorSex = (string)dataRow[5], IsAdmin = (string)dataRow[6],
+                Status = (string)dataRow[7]};
             return doctor;
         }
 
@@ -40,23 +40,22 @@ namespace SqliteDemo.Models.Repository
          */
         public static bool AddDoctor(Doctor doctor)
         {
-            string sql = "insert into doctor (doctorID, doctorName, doctorEmail, doctorPhone, salt, hashedPassword, " +
-                "doctorSex, IsAdmin, status) values ('"
-                + doctor.doctorID + "', "
-                + doctor.doctorName + ", '"
-                + doctor.doctorEmail + ", '"
-                + doctor.doctorPhone + ", '"
-                + doctor.salt + ", '"
-                + doctor.hashedPassword + ", '"
-                + doctor.doctorSex + ", '"
-                + doctor.IsAdmin + ", '"
-                + doctor.status + ", ')";
+            string sql = "insert into doctor (DoctorID, DoctorName, DoctorEmail, Salt, HashedPassword, " +
+                "DoctorSex, Isadmin, Status) values ('"
+                + doctor.DoctorID + "', '"
+                + doctor.DoctorName + "', '"
+                + doctor.DoctorEmail + "', '"
+                + doctor.Salt + "', '"
+                + doctor.HashedPassword + "', '"
+                + doctor.DoctorSex + "', '"
+                + doctor.IsAdmin + "', '"
+                + doctor.Status + "')";
             RepositoryManager.Repository.DoCommand(sql);
             return true;
         }
         public static bool DeleteDoctor(Doctor doctor)
         {
-            string sql = "delete from doctor where doctorID =" + doctor.doctorID;
+            string sql = "delete from doctor where DoctorID =" + doctor.DoctorID;
             RepositoryManager.Repository.DoCommand(sql);
             return true;
         }
@@ -68,7 +67,7 @@ namespace SqliteDemo.Models.Repository
          */
         public static bool ChangeDoctor(Doctor doctor)
         {
-            string sql = "update doctor set doctorName = '" + doctor.doctorName + "' where doctorID =  " + doctor.doctorID;
+            string sql = "update doctor set DoctorName = '" + doctor.DoctorName + "' where DoctorID =  " + doctor.DoctorID;
             RepositoryManager.Repository.DoCommand(sql);
             return true;
         }
@@ -87,15 +86,14 @@ namespace SqliteDemo.Models.Repository
             {
                 Doctor doctor = new Doctor
                 {
-                    doctorID = (string)dataRow[0],
-                    doctorName = (string)dataRow[1],
-                    doctorEmail = (string)dataRow[2],
-                    doctorPhone = (string)dataRow[3],
-                    salt = (string)dataRow[4],
-                    hashedPassword = (string)dataRow[5],
-                    doctorSex = (int)dataRow[6],
-                    IsAdmin = (int)dataRow[7],
-                    status = (int)dataRow[8],
+                    DoctorID = (string)dataRow[0],
+                    DoctorName = (string)dataRow[1],
+                    DoctorEmail = (string)dataRow[2],
+                    Salt = (string)dataRow[3],
+                    HashedPassword = (string)dataRow[4],
+                    DoctorSex = (string)dataRow[5],
+                    IsAdmin = (string)dataRow[6],
+                    Status = (string)dataRow[7]
                     
                 };
                 doctors.Add(doctor);

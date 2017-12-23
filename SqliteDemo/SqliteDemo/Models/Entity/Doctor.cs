@@ -10,39 +10,45 @@ namespace SqliteDemo.Models.Entity
      */
     public class Doctor
     {
-        public string doctorID { get; set; }
-        public string doctorName { get; set; }
-        public string doctorEmail { get; set; }
-        public string doctorPhone { get; set; }
-        public string salt { get; set; }
-        public string hashedPassword { get; set; }
-        public int doctorSex { get; set; }
-        public int IsAdmin { get; set; }
-        public int status { get; set; }
+        public string DoctorID { get; set; }
+        public string DoctorName { get; set; }
+        public string DoctorEmail { get; set; }
+        public string Salt { get; set; }
+        public string HashedPassword { get; set; }
+        public string DoctorSex { get; set; }
+        public string IsAdmin { get; set; }
+        public string Status { get; set; }
 
         /*
          * Default constructor - no initialization.
          */
         public Doctor()
         {
+            DoctorID = "";
+            DoctorName = "";
+            DoctorEmail = "";
+            Salt = "";
+            HashedPassword = "";
+            DoctorSex = "";
+            IsAdmin = "";
+            Status = "";
         }
 
         /*
          * Parameterized constructor
          */
-        public Doctor(String DoctorID, String DoctorName, String DoctorEmail, 
-            String DoctorPhone, String Salt, String HashedPassword, int DoctorSex,
-            int Isadmin, int Status, DateTime DateAdded)
+        public Doctor(String doctorID, String doctorName, String doctorEmail, 
+            String salt, String hashedPassword, String doctorSex,
+            String isadmin, String status)
         {
-            doctorID = DoctorID;
-            doctorName = DoctorName;
-            doctorEmail = DoctorEmail;
-            doctorPhone = DoctorPhone;
-            salt = Salt;
-            hashedPassword = HashedPassword;
-            doctorSex = DoctorSex;
-            IsAdmin = Isadmin;
-            status = Status;
+            DoctorID = doctorID;
+            DoctorName = doctorName;
+            DoctorEmail = doctorEmail;
+            Salt = salt;
+            HashedPassword = hashedPassword;
+            DoctorSex = doctorSex;
+            IsAdmin = isadmin;
+            Status = status;
             
         }
     }

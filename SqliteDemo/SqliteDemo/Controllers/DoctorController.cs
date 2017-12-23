@@ -41,12 +41,12 @@ namespace SqliteTest.Controllers
                 ViewBag.message = "Error: Invalid Request - please try again";
                 return View(new Doctor());
             }
-            if (newDoctor.doctorID == null || newDoctor.doctorID.Length == 0)
+            if (newDoctor.DoctorID == null || newDoctor.DoctorID.Length == 0)
             {
                 ViewBag.message = "Error: ID is required";
                 return View(newDoctor);
             }
-            if (newDoctor.doctorName == null || newDoctor.doctorName.Length == 0)
+            if (newDoctor.DoctorName == null || newDoctor.DoctorName.Length == 0)
             {
                 ViewBag.message = "Error: Name is required";
                 return View(newDoctor);
@@ -56,7 +56,7 @@ namespace SqliteTest.Controllers
             bool result = DoctorManager.AddNewDoctor(newDoctor);
             if (result)
             {
-                ViewBag.message = "Doctor added";
+                ViewBag.message = "Doctor is added";
             }
             else
             {
@@ -75,7 +75,7 @@ namespace SqliteTest.Controllers
         [HttpPost]
         public ActionResult DeleteDoctor(Doctor delDoctor)
         {
-            if (delDoctor.doctorID == null || delDoctor.doctorID.Length == 0)
+            if (delDoctor.DoctorID == null || delDoctor.DoctorID.Length == 0)
             {
                 ViewBag.message = "Error: An ID is required";
                 return View(delDoctor);

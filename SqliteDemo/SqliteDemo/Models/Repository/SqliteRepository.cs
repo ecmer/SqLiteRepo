@@ -121,15 +121,15 @@ namespace SqliteTest.Models.Repository
             if (success & openResult)
             {
                 string sql = "CREATE TABLE doctor (doctorID VARCHAR(50), doctorName VARCHAR(50), doctorEmail VARCHAR(50)," +
-                    "doctorPhone VARCHAR(50), salt VARCHAR(50), hashedPassword VARCHAR(50)," +
-                    "doctorSex INTEGER, IsAdmin INTEGER, status INTEGER, PRIMARY KEY(doctorID))";
+                    "salt VARCHAR(50), hashedPassword VARCHAR(50)," +
+                    "doctorSex VARCHAR(50), isadmin VARCHAR(50), status VARCHAR(50), PRIMARY KEY(doctorID))";
                 DoCommand(sql);
-                /*
-                sql = "insert into doctor(doctorID, doctorName, doctorEmail, doctorPhone," +
-                    "salt, hashedPassword, doctorSex, IsAdmin, status) values "
-                    + "('1234567', 'Deniz Merve Gunduz', 'dmerve.gunduz@gmail.com', '0123456789'," +
-                    "'blablabla', '23456789sfdgh', 1, 0, 1)";
-                DoCommand(sql);*/
+                
+                sql = "insert into doctor(doctorID, doctorName, doctorEmail," +
+                    "salt, hashedPassword, doctorSex, isadmin, status) values "
+                    + "('1234567', 'Deniz Merve Gunduz', 'dmerve.gunduz@gmail.com'," +
+                    "'blablabla', '23456789sfdgh', '1', '1', '1')";
+                DoCommand(sql);
             }
 
             return success;
