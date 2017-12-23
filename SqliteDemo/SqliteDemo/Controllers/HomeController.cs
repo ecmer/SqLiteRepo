@@ -15,19 +15,19 @@ namespace SqliteDemo.Controllers
          */
         public ActionResult Index()
         {
+            bool result = RepositoryManager.Repository.Initialize();
             return View();
         }
 
-        /*
-         * Initialize the database. This needs to be done only once, if the file
-         * does not already exist.
-         */
-        public ActionResult InitDb()
+        public ActionResult About()
         {
-            bool result = RepositoryManager.Repository.Initialize();
-            ViewBag.message = result ?
-                "Repository Initialized" : "Repository Initialization Failed";
-            return View("Index");
+            return View();
         }
+
+        public ActionResult Contact()
+        {
+            return View();
+        }
+        
     }
 }
