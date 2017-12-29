@@ -232,7 +232,6 @@
     <Content Include="Views\Doctor\AddDoctor.cshtml" />
     <Content Include="Views\Doctor\DeleteDoctor.cshtml" />
     <Content Include="Views\Doctor\ChangeDoctor.cshtml" />
-    <Content Include="Views\Register\Index.cshtml" />
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Login\Index.cshtml" />
@@ -243,10 +242,13 @@
     <Content Include="Views\Doctor\Index.cshtml" />
     <Content Include="Views\LoggedIn\Admin.cshtml" />
     <Content Include="Views\LoggedIn\Doctor.cshtml" />
+    <Content Include="Views\Admin\Index.cshtml" />
+    <Content Include="Views\Admin\DeleteDoctor.cshtml" />
+    <Content Include="Views\Admin\ChangeDoctor.cshtml" />
+    <Content Include="Views\Register\Register.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Admin\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

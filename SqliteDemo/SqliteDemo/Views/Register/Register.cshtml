@@ -1,14 +1,13 @@
-﻿
-@{
+﻿@{
     Layout = "~/Views/Shared/_Layout.cshtml";
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Register";
 }
 
 <h2>Register</h2>
 
 
 <div style="text-align:center">
-    <form method="post" action="~/Doctor/AddDoctor">
+    <form method="post" action="~/Register/Register">
 
         <p><label>Doctor ID: <input type="text" name="DoctorID" value="@Model.DoctorID" /></label></p>
         <p><label>Doctor Name: <input type="text" name="DoctorName" value="@Model.DoctorName" /></label></p>
@@ -21,4 +20,3 @@
 
     </form>
 </div>
-

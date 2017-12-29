@@ -133,7 +133,7 @@ namespace SqliteTest.Models.Repository
                 
                 sql = "insert into doctor(doctorID, doctorName, doctorEmail, password," +
                     "salt, hashedPassword, doctorSex, isadmin, status) values "
-                    + "('1234567', 'Deniz Merve Gunduz', 'dmerve.gunduz@gmail.com', 'pass', '"+salt+"', '"+HashedPassword+"', '1', '1', '1')";
+                    + "('1234567', 'Deniz Merve Gunduz', 'deniz@gmail.com', 'pass', '"+salt+"', '"+HashedPassword+"', 'female', '1', '1')";
                 DoCommand(sql);
 
                 string sql1 = "CREATE TABLE patient (patientID VARCHAR(50), doctorID VARCHAR(50), patientName VARCHAR(50), patientEmail VARCHAR(50)," +
@@ -143,7 +143,7 @@ namespace SqliteTest.Models.Repository
 
                 sql1 = "insert into patient(patientID, doctorID, patientName, patientEmail," +
                     "patientPhone, patientSex, patientAge, healthProblem) values "
-                    + "('1234567', '1', 'Deniz', 'dmerve.gunduz@gmail.com', '050666666666', 'female', '22', 'Crazy')";
+                    + "('1234567', '1', 'Deniz', 'deniz@gmail.com', '050666666666', 'female', '22', 'Crazy')";
                 DoCommand(sql1);
             }
 
