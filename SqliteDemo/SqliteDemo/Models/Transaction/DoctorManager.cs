@@ -9,6 +9,45 @@ namespace SqliteDemo.Models.Transaction
 {
     public class DoctorManager
     {
+        public static bool AuthenticateDoctor(Credential credent, HttpSessionStateBase session)
+        {
+            session["LoggedIn"] = false;
+            session["IsAdmin"] = false;
+
+            Doctor doc = DoctorPersistence.GetDoctorByID(credent.DoctorID);
+            if (doc == null)
+            {
+                return false;
+            }
+
+            if(doc.DoctorID == null)
+            {
+                return false;
+            }
+
+            else
+            {
+                string HashedPassword = EncryptionManager.EncodePassword(credent.Password, doc.Salt);
+
+                if (HashedPassword == doc.HashedPassword)
+                {
+                    session["LoggedIn"] = true;
+                    session["IsAdmin"] = doc.IsAdmin;
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+                
+            }
+        }
+
+        public static void LogoutDoctor(HttpSessionStateBase session)
+        {
+            session["LoggedIn"] = null;
+            session["IsAdmin"] = false;
+        }
 
         public static Doctor[] GetAllDoctors()
         {
@@ -31,7 +70,7 @@ namespace SqliteDemo.Models.Transaction
         public static bool AddNewDoctor(Doctor newDoctor)
         {
             // Verify that the doctor doesn't already exist
-            Doctor oldDoctor = DoctorPersistence.getDoctor(newDoctor);
+            Doctor oldDoctor = DoctorPersistence.GetDoctor(newDoctor);
             // oldDoctor should be null, if this is a new doctor
             if (oldDoctor != null)
             {
@@ -49,7 +88,7 @@ namespace SqliteDemo.Models.Transaction
          */
         public static bool DeleteDoctor(Doctor delDoctor)
         {
-            Doctor checkDoctor = DoctorPersistence.getDoctor(delDoctor);
+            Doctor checkDoctor = DoctorPersistence.GetDoctor(delDoctor);
             if (checkDoctor == null)
             {
                 return false;
@@ -65,7 +104,7 @@ namespace SqliteDemo.Models.Transaction
          */
         public static bool ChangeDoctor(Doctor changeDoctor)
         {
-            Doctor checkDoctor = DoctorPersistence.getDoctor(changeDoctor);
+            Doctor checkDoctor = DoctorPersistence.GetDoctor(changeDoctor);
             if (checkDoctor == null)
             {
                 return false;

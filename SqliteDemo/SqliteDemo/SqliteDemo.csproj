@@ -157,19 +157,27 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\DoctorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\LoggedInController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\PatientController.cs" />
     <Compile Include="Controllers\RegisterController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Entity\Credential.cs" />
     <Compile Include="Models\Entity\Doctor.cs" />
+    <Compile Include="Models\Entity\Patient.cs" />
     <Compile Include="Models\Repository\DoctorPersistence.cs" />
     <Compile Include="Models\Repository\IRepository.cs" />
+    <Compile Include="Models\Repository\PatientPersistence.cs" />
     <Compile Include="Models\Repository\RepositoryManager.cs" />
     <Compile Include="Models\Repository\SqliteRepository.cs" />
     <Compile Include="Models\Transaction\DoctorManager.cs" />
+    <Compile Include="Models\Transaction\EncryptionManager.cs" />
+    <Compile Include="Models\Transaction\PatientManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -179,6 +187,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="images\logo.png" />
     <Content Include="Static\Book.cs.txt" />
     <Content Include="Static\Index.cshtml.txt" />
     <Content Include="Static\IRepository.cs.txt" />
@@ -223,13 +232,21 @@
     <Content Include="Views\Doctor\AddDoctor.cshtml" />
     <Content Include="Views\Doctor\DeleteDoctor.cshtml" />
     <Content Include="Views\Doctor\ChangeDoctor.cshtml" />
-    <Content Include="Views\Login\Index.cshtml" />
     <Content Include="Views\Register\Index.cshtml" />
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
+    <Content Include="Views\Login\Index.cshtml" />
+    <Content Include="Views\Patient\List.cshtml" />
+    <Content Include="Views\Patient\AddPatient.cshtml" />
+    <Content Include="Views\Patient\DeletePatient.cshtml" />
+    <Content Include="Views\Patient\ChangePatient.cshtml" />
+    <Content Include="Views\Doctor\Index.cshtml" />
+    <Content Include="Views\LoggedIn\Admin.cshtml" />
+    <Content Include="Views\LoggedIn\Doctor.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Admin\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

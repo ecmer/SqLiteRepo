@@ -2,6 +2,7 @@
 using System.Web.Mvc;
 using SqliteDemo.Models.Entity;
 using SqliteDemo.Models.Transaction;
+using SqliteDemo.Models.Repository;
 
 namespace SqliteTest.Controllers
 {
@@ -10,6 +11,12 @@ namespace SqliteTest.Controllers
      */
     public class DoctorController : Controller
     {
+        public ActionResult Index()
+        {
+            bool result = RepositoryManager.Repository.Initialize();
+            return View();
+        }
+
         /*
          * Handle a request for a listing of doctors.
          */
@@ -46,7 +53,7 @@ namespace SqliteTest.Controllers
                 ViewBag.message = "Error: ID is required";
                 return View(newDoctor);
             }
-            if (newDoctor.DoctorName == null || newDoctor.DoctorName.Length == 0)
+            if (newDoctor.Password == null || newDoctor.Password.Length == 0)
             {
                 ViewBag.message = "Error: Name is required";
                 return View(newDoctor);

@@ -2,6 +2,9 @@ using System;
 using System.Collections.Generic;
 using System.Data.SQLite;
 using System.IO;
+using SqliteDemo.Models.Transaction;
+using System.Linq;
+using System.Web;
 
 namespace SqliteTest.Models.Repository
 {
@@ -120,16 +123,28 @@ namespace SqliteTest.Models.Repository
             bool openResult = Open();
             if (success & openResult)
             {
+                string salt = EncryptionManager.PasswordSalt;
+                string HashedPassword = EncryptionManager.EncodePassword("deneme1234", salt);
+
                 string sql = "CREATE TABLE doctor (doctorID VARCHAR(50), doctorName VARCHAR(50), doctorEmail VARCHAR(50)," +
-                    "salt VARCHAR(50), hashedPassword VARCHAR(50)," +
+                    "password VARCHAR(50), salt VARCHAR(50), hashedPassword VARCHAR(50)," +
                     "doctorSex VARCHAR(50), isadmin VARCHAR(50), status VARCHAR(50), PRIMARY KEY(doctorID))";
                 DoCommand(sql);
                 
-                sql = "insert into doctor(doctorID, doctorName, doctorEmail," +
+                sql = "insert into doctor(doctorID, doctorName, doctorEmail, password," +
                     "salt, hashedPassword, doctorSex, isadmin, status) values "
-                    + "('1234567', 'Deniz Merve Gunduz', 'dmerve.gunduz@gmail.com'," +
-                    "'blablabla', '23456789sfdgh', '1', '1', '1')";
+                    + "('1234567', 'Deniz Merve Gunduz', 'dmerve.gunduz@gmail.com', 'pass', '"+salt+"', '"+HashedPassword+"', '1', '1', '1')";
                 DoCommand(sql);
+
+                string sql1 = "CREATE TABLE patient (patientID VARCHAR(50), doctorID VARCHAR(50), patientName VARCHAR(50), patientEmail VARCHAR(50)," +
+                    "patientPhone VARCHAR(50), patientSex VARCHAR(50)," +
+                    "patientAge VARCHAR(50), healthProblem VARCHAR(50), PRIMARY KEY(patientID))";
+                DoCommand(sql1);
+
+                sql1 = "insert into patient(patientID, doctorID, patientName, patientEmail," +
+                    "patientPhone, patientSex, patientAge, healthProblem) values "
+                    + "('1234567', '1', 'Deniz', 'dmerve.gunduz@gmail.com', '050666666666', 'female', '22', 'Crazy')";
+                DoCommand(sql1);
             }
 
             return success;

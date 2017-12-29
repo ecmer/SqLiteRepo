@@ -1,7 +1,23 @@
 ﻿
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Login";
 }
+@using SqliteDemo.Models.Entity;
+@model  Credential
 
-<h2>Index</h2>
+
+<hr />
+<div style="text-align:center">
+    <form method="post" action="~/Login/Index">
+        <p><label><img src="~/images/logo.png" style="margin-top:10px"></label></p>
+        <p><label>DoctorID: <input type="text" name="DoctorID" value="@Model.DoctorID" /></label></p>
+        <p><label>Password: <input type="password" name="Password" value="@Model.Password" /></label></p>
+        <p><input type="submit" value="Login" /></p>
+
+    </form>
+</div>
+
+
+<p style="text-align:center">@TempData["message"]</p>
+
 

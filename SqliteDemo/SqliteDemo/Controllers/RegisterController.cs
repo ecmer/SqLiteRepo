@@ -11,7 +11,7 @@ namespace SqliteDemo.Controllers
         // GET: Register
         public ActionResult Index()
         {
-            return View();
+            return RedirectToAction("AddDoctor","Doctor");
         }
 
         [HttpGet]
@@ -21,7 +21,8 @@ namespace SqliteDemo.Controllers
         }
 
         [HttpPost]
-        public ActionResult Register(String userID, String username, String password)
+        public ActionResult Register(String DoctorID, String DoctorName, String DoctorEmail, String Password,
+            String DoctorSex)
         {
             return View();
         }

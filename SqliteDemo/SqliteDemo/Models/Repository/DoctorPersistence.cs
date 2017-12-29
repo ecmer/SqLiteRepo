@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using SqliteDemo.Models.Entity;
+using SqliteDemo.Models.Transaction;
 
 namespace SqliteDemo.Models.Repository
 {
@@ -15,7 +16,7 @@ namespace SqliteDemo.Models.Repository
          * the parameter.
          * Return null if the doctor can't be found.
          */
-        public static Doctor getDoctor(Doctor keyDoctor)
+        public static Doctor GetDoctor(Doctor keyDoctor)
         {
             string sqlQuery = "select * from doctor where DoctorID=" + keyDoctor.DoctorID;
             List<object[]> rows = RepositoryManager.Repository.DoQuery(sqlQuery);
@@ -28,11 +29,73 @@ namespace SqliteDemo.Models.Repository
             // Use the data from the first returned row (should be the only one) to create a Doctor.
             object[] dataRow = rows[0];
             Doctor doctor = new Doctor { DoctorID = (string)dataRow[0], DoctorName = (string)dataRow[1],
-                DoctorEmail = (string)dataRow[2], Salt = (string)dataRow[3],
-                HashedPassword = (string)dataRow[4], DoctorSex = (string)dataRow[5], IsAdmin = (string)dataRow[6],
-                Status = (string)dataRow[7]};
+                DoctorEmail = (string)dataRow[2], Password = (string) dataRow[3], Salt = (string)dataRow[4],
+                HashedPassword = (string)dataRow[5], DoctorSex = (string)dataRow[6], IsAdmin = (bool)dataRow[7],
+                Status = (bool)dataRow[8]};
             return doctor;
         }
+
+        public static Doctor GetDoctorByID(string doctorID)
+        {
+            List<Doctor> doctors = new List<Doctor>();
+
+            string sqlQuery = "select * from doctor where DoctorID=" + doctorID ;
+            List<object[]> rows = RepositoryManager.Repository.DoQuery(sqlQuery);
+
+            foreach (object[] dataRow in rows)
+            {
+                bool isAdmin = false;
+                string detectAdmin = (string)dataRow[7];
+
+                if (String.Equals(detectAdmin, "Y"))
+                {
+                    isAdmin = true;
+                }
+                else
+                {
+                    isAdmin = false;
+                }
+
+
+                bool status = false;
+                string detectStatus = (string)dataRow[8];
+
+                if (String.Equals(detectStatus, "A"))
+                {
+                    status = true;
+                }
+                else
+                {
+                    status = false;
+                }
+
+                Doctor doctor = new Doctor
+                {
+                    DoctorID = (string)dataRow[0],
+                    DoctorName = (string)dataRow[1],
+                    DoctorEmail = (string)dataRow[2],
+                    Password = (string)dataRow[3],
+                    Salt = (string)dataRow[4],
+                    HashedPassword = (string)dataRow[5],
+                    DoctorSex = (string)dataRow[6],
+                    IsAdmin = isAdmin,
+                    Status = status
+
+                };
+                doctors.Add(doctor);
+            }
+
+            foreach (Doctor doc in doctors)
+            {
+                if (doctorID == doc.DoctorID)
+                {
+                    return doc;
+                }
+            }
+            return null;
+        }
+
+
 
         /*
          * Add a Doctor to the database.
@@ -40,13 +103,17 @@ namespace SqliteDemo.Models.Repository
          */
         public static bool AddDoctor(Doctor doctor)
         {
-            string sql = "insert into doctor (DoctorID, DoctorName, DoctorEmail, Salt, HashedPassword, " +
+            string salt = EncryptionManager.PasswordSalt;
+            string HashedPassword = EncryptionManager.EncodePassword(doctor.Password, salt);
+
+            string sql = "insert into doctor (DoctorID, DoctorName, DoctorEmail, Password, Salt, HashedPassword, " +
                 "DoctorSex, Isadmin, Status) values ('"
                 + doctor.DoctorID + "', '"
                 + doctor.DoctorName + "', '"
                 + doctor.DoctorEmail + "', '"
-                + doctor.Salt + "', '"
-                + doctor.HashedPassword + "', '"
+                + doctor.Password + "', '"
+                + salt + "', '"
+                + HashedPassword + "', '"
                 + doctor.DoctorSex + "', '"
                 + doctor.IsAdmin + "', '"
                 + doctor.Status + "')";
@@ -84,16 +151,42 @@ namespace SqliteDemo.Models.Repository
 
             foreach (object[] dataRow in rows)
             {
+                bool isAdmin = true;
+                string detectAdmin = (string)dataRow[7];
+                
+                if (String.Equals(detectAdmin, "N"))
+                {
+                    isAdmin = false;
+                }
+                else
+                {
+                    isAdmin = true;
+                }
+
+                bool status = false;
+                string detectStatus = (string)dataRow[8];
+
+
+                if (String.Equals(detectStatus, "A"))
+                {
+                    status = true;
+                }
+                else
+                {
+                    status = false;
+                }
+
                 Doctor doctor = new Doctor
                 {
                     DoctorID = (string)dataRow[0],
                     DoctorName = (string)dataRow[1],
                     DoctorEmail = (string)dataRow[2],
-                    Salt = (string)dataRow[3],
-                    HashedPassword = (string)dataRow[4],
-                    DoctorSex = (string)dataRow[5],
-                    IsAdmin = (string)dataRow[6],
-                    Status = (string)dataRow[7]
+                    Password = (string)dataRow[3],
+                    Salt = (string)dataRow[4],
+                    HashedPassword = (string)dataRow[5],
+                    DoctorSex = (string)dataRow[6],
+                    IsAdmin = isAdmin,
+                    Status = status
                     
                 };
                 doctors.Add(doctor);

@@ -4,18 +4,17 @@
 @using SqliteDemo.Models.Entity;
 @model Doctor
 
-<h2>AddDoctor</h2>
+<h2>Register</h2>
 
-<form method="post" action="~/Doctor/AddDoctor">
+    <form method="post" action="~/Doctor/AddDoctor">
 
-    <p><label>Doctor ID: <input type="text" name="DoctorID" value="@Model.DoctorID"/></label></p>
-    <p><label>Doctor Name: <input type="text" name="DoctorName" value="@Model.DoctorName" /></label></p>
-    <p><label>Doctor Email: <input type="text" name="DoctorEmail" value="@Model.DoctorEmail" /></label></p>
-    <p><label>Doctor Salt: <input type="text" name="Salt" value="@Model.Salt" /></label></p>
-    <p><label>Doctor Hashed Password: <input type="text" name="HashedPassword" value="@Model.HashedPassword" /></label></p>
-    <p><label>Doctor Sex: <input type="text" name="DoctorSex" value="@Model.DoctorSex" /></label></p>
-    <p><label>Doctor IsAdmin: <input type="text" name="IsAdmin" value="@Model.IsAdmin" /></label></p>
-    <p><label>Doctor status: <input type="text" name="Status" value="@Model.Status" /></label></p>
-    <p><input type="submit" value="Add Doctor" /></p>
+        <p><label>Doctor ID: <input type="text" name="DoctorID" value="@Model.DoctorID" /></label></p>
+        <p><label>Doctor Name: <input type="text" name="DoctorName" value="@Model.DoctorName" /></label></p>
+        <p><label>Doctor Email: <input type="text" name="DoctorEmail" value="@Model.DoctorEmail" /></label></p>
+        <p><label>Doctor Password: <input type="password" name="Password" value="@Model.Password" /></label></p>
+        <p><label>Doctor Sex: <input type="text" name="DoctorSex" value="@Model.DoctorSex" /></label></p>
+        <p><label>Doctor IsAdmin: <input type="text" name="IsAdmin" value="@Model.IsAdmin" /></label></p>
+        <p><label>Doctor status: <input type="text" name="Status" value="@Model.Status" /></label></p>
+        <p><input type="submit" value="Register" /></p>
 
-</form>
+    </form>

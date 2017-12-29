@@ -1,0 +1,17 @@
+﻿
+@{
+    ViewBag.Title = "List";
+}
+@using SqliteDemo.Models.Entity;
+
+@model Patient[]
+<h4>Patient List</h4>
+<ul>
+    @foreach (Patient pat in Model)
+    {
+        <li>
+            @pat.PatientID, @pat.DoctorID, @pat.PatientName, @pat.PatientEmail,
+            @pat.PatientPhone, @pat.PatientSex, @pat.PatientAge, @pat.HealthProblem
+        </li>
+    }
+</ul>
